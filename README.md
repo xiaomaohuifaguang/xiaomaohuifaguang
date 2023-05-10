@@ -1,6 +1,6 @@
 # Hi 🎉 泥嚎 welcome
 
-<p><a href="https://xiaomaohuifaguang.github.io/"><img src="https://img.shields.io/github/followers/xiaomaohuifaguang?style=social"/></a></p>
+![GitHub followers](https://img.shields.io/github/followers/xiaomaohuifaguang?color=green&label=github%E5%85%B3%E6%B3%A8&style=plastic)
   
 ![](https://github-readme-stats.vercel.app/api?username=xiaomaohuifaguang&show_icons=true&theme=dark&count_private=true)
 
