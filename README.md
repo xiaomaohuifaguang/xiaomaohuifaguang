@@ -2,7 +2,7 @@
 
 ![GitHub followers](https://img.shields.io/github/followers/xiaomaohuifaguang?color=green&label=github%E5%85%B3%E6%B3%A8&style=plastic)
 
-[![GitHub followers](https://img.shields.io/static/v1?label=Blog&message=个人博客&color=red)](https://xiaomaohuifaguang.github.io)
+[![GitHub followers](https://img.shields.io/static/v1?label=Blog&message=个人博客&color=red)](https://xiaomaohuifaguang.github.io/blog)
 
 ![](https://github-readme-stats.vercel.app/api?username=xiaomaohuifaguang&show_icons=true&theme=dark&count_private=true)
 
