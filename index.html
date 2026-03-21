@@ -1,7 +1,133 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<title>小猫会发光</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小猫会发光 | Java Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #6366f1; --secondary: #ec4899; --accent: #06b6d4; --bg-dark: #0f0f1a; --bg-card: #1a1a2e; --text-primary: #f8fafc; --text-secondary: #94a3b8; }
+        body { font-family: 'Noto Sans SC', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; }
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%); animation: bgMove 20s ease-in-out infinite; }
+        @keyframes bgMove { 0%, 100% { transform: translate(-10%, -10%); } 50% { transform: translate(10%, 10%); } }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header { text-align: center; padding: 4rem 0 2rem; }
+        .avatar-container { position: relative; display: inline-block; margin-bottom: 2rem; }
+        .avatar { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 4px; animation: avatarGlow 3s ease-in-out infinite; }
+        .avatar img { width: 100%; height: 100%; border-radius: 50%; background: var(--bg-card); }
+        @keyframes avatarGlow { 0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); } 50% { box-shadow: 0 0 40px rgba(236, 72, 153, 0.8); } }
+        .status-badge { position: absolute; bottom: 10px; right: 10px; width: 20px; height: 20px; background: #22c55e; border-radius: 50%; border: 3px solid var(--bg-dark); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        h1 { font-size: 3rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { font-size: 1.25rem; color: var(--text-secondary); margin: 0.5rem 0; }
+        .typing-text { font-size: 1.1rem; color: var(--accent); border-right: 2px solid var(--accent); animation: blink 1s infinite; }
+        @keyframes blink { 0%, 50% { border-color: var(--accent); } 51%, 100% { border-color: transparent; } }
+        .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 2rem 0; }
+        .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50px; font-size: 0.9rem; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: var(--text-primary); }
+        .badge:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .card { background: var(--bg-card); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        .card-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.5rem; }
+        .card-icon.java { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .card-icon.blog { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+        .card-icon.contact { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .card-icon.stats { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .card p { color: var(--text-secondary); line-height: 1.6; }
+        .card a { display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; background: var(--primary); color: white; text-decoration: none; border-radius: 8px; transition: all 0.3s ease; }
+        .card a:hover { background: #4f46e5; }
+        .stats-img { width: 100%; border-radius: 12px; margin-top: 1rem; }
+        footer { text-align: center; padding: 3rem 0; color: var(--text-secondary); }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; color: var(--text-primary); text-decoration: none; transition: all 0.3s ease; }
+        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
+        @media (max-width: 768px) { h1 { font-size: 2rem; } .cards-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
+    <div class="container">
+        <header>
+            <div class="avatar-container">
+                <div class="avatar"><img src="https://github.com/xiaomaohuifaguang.png" alt="小猫会发光"></div>
+                <div class="status-badge"></div>
+            </div>
+            <h1>小猫会发光</h1>
+            <p class="subtitle">Java Engineer | 全栈开发者</p>
+            <span class="typing-text" id="typing"></span>
+            <div class="badges">
+                <a href="https://github.com/xiaomaohuifaguang" class="badge" target="_blank"><span>⭐</span> GitHub</a>
+                <a href="https://xiaomaohuifaguang.github.io/blog" class="badge" target="_blank"><span>📝</span> 技术博客</a>
+                <a href="mailto:xiaomaohuifaguang@163.com" class="badge"><span>✉️</span> Email</a>
+            </div>
+        </header>
+        <main class="cards-grid">
+            <div class="card">
+                <div class="card-icon java">☕</div>
+                <h3>Java 开发</h3>
+                <p>专注于 Spring Boot、微服务架构、分布式系统设计与开发。</p>
+                <a href="https://xiaomaohuifaguang.github.io/blog" target="_blank">查看博客</a>
+            </div>
+            <div class="card">
+                <div class="card-icon blog">📝</div>
+                <h3>技术博客</h3>
+                <p>记录学习与实践，分享技术心得与踩坑经验。</p>
+                <a href="https://xiaomaohuifaguang.github.io/blog" target="_blank">访问博客</a>
+            </div>
+            <div class="card">
+                <div class="card-icon stats">📊</div>
+                <h3>GitHub 统计</h3>
+                <img class="stats-img" src="https://github-readme-stats.vercel.app/api?username=xiaomaohuifaguang&show_icons=true&theme=dark&count_private=true" alt="GitHub Stats">
+            </div>
+            <div class="card">
+                <div class="card-icon contact">📧</div>
+                <h3>联系我</h3>
+                <p>欢迎技术交流、项目合作或任何问题咨询。</p>
+                <a href="mailto:xiaomaohuifaguang@163.com">发送邮件</a>
+            </div>
+        </main>
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/xiaomaohuifaguang" target="_blank" title="GitHub">G</a>
+                <a href="mailto:xiaomaohuifaguang@163.com" title="Email">@</a>
+                <a href="https://xiaomaohuifaguang.github.io/blog" target="_blank" title="Blog">B</a>
+            </div>
+            <p>© 2024 小猫会发光 | Made with ❤️</p>
+        </footer>
+    </div>
+    <script>
+        const texts = ["代码改变世界", "热爱技术，热爱生活", "持续学习，不断成长"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing');
+        
+        function type() {
+            const currentText = texts[textIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(type, typeSpeed);
+        }
+        type();
+    </script>
 </body>
 </html>
