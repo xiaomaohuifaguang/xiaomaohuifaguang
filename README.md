@@ -6,8 +6,8 @@
 
 ![](https://github-readme-stats.vercel.app/api?username=xiaomaohuifaguang&show_icons=true&theme=dark&count_private=true)
 
-- 🌱 I am a Java engineer
-- 🌱 我是一名Java工程师
+- 🌱 I am a YES engineer
+- 🌱 我是一名YES工程师
 - 📫 How to reach me: xiaomaohuifaguang@163.com
 - 📫 怎 样 联 系 我  : xiaomaohuifaguang@163.com
 
